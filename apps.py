@@ -36,8 +36,9 @@ opts = [{'label' : i, 'value' : i} for i in features]
 st['Date'] = pd.to_datetime(st.Date,format='%d-%m-%Y')
 # Step 3. Create a plotly figure
 fig = make_subplots(
-    rows=1, cols=2,
-    column_widths=[0.6, 0.4])
+    rows=2, cols=2,
+    column_widths=[0.6, 0.4],
+    row_heights=[0.4,0.6])
 fig.add_trace(
     go.Bar(name='Payment Per Day',x=st.Date,y=st['Amount'], marker=dict(color="blue"), showlegend=True),
     row=1, col=1
@@ -45,6 +46,14 @@ fig.add_trace(
 fig.add_trace(
     go.Bar(name='Person Per Day',x=st.Date,y=st['Number Of Person'], marker=dict(color="crimson"), showlegend=True),
     row=1, col=2
+)
+fig.add_trace(
+    go.Bar(name='Total Amount Per Month',x=df['Month'],y=df['Total Amount'], marker=dict(color="Green"), showlegend=True),
+    row=2, col=1
+)
+fig.add_trace(
+    go.Bar(name='Total Person Per Month',x=df['Month'],y=df['Toatl Person'], marker=dict(color="orange"), showlegend=True),
+    row=2, col=2
 )
 fig.update_geos(
     projection_type="orthographic",
@@ -66,7 +75,7 @@ fig.update_layout(
             y=0)
     ]
 )
-fig.update_layout(height=500, width=500,title_text="Lyfas Rajorpay Dashboard")
+fig.update_layout(height=500, width=700,title_text="Lyfas Rajorpay Dashboard")
 # Step 4. Create a Dash layout
 app.layout = html.Div([
                 # adding a header and a paragraph
@@ -100,7 +109,8 @@ app.layout = html.Div([
                            style_header={'backgroundColor': 'rgb(30, 30, 30)'},
                            style_cell={
                                'backgroundColor': 'rgb(50, 50, 50)',
-                                'color': 'white'},
+                                'color': 'white',
+                                 'textAlign': 'left'},
                            )
                      
                     ]
@@ -120,8 +130,9 @@ def update_charts(start_date, end_date):
     )
     filtered_data = st.loc[mask, :]
     fig = make_subplots(
-    rows=1, cols=2,
-    column_widths=[0.6, 0.4])
+    rows=2, cols=2,
+    column_widths=[0.6, 0.4],
+    row_heights=[0.4,0.6])
     fig.add_trace(
     go.Bar(name='Payment Per Day',x=filtered_data['Date'],y=filtered_data['Amount'], marker=dict(color="blue"), showlegend=True,text=filtered_data['Amount'],textposition='auto'),
     row=1, col=1
@@ -130,6 +141,12 @@ def update_charts(start_date, end_date):
     go.Bar(name='Person Per Day',x=filtered_data['Date'],y=filtered_data['Number Of Person'], marker=dict(color="crimson"), showlegend=True,text=filtered_data['Number Of Person'],textposition='auto'),
     row=1, col=2
     )
+    fig.add_trace(
+    go.Bar(name='Total Amount Per Month',x=df['Month'],y=df['Total Amount'], marker=dict(color="Green"), showlegend=True,text=df['Total Amount'],textposition='auto'),
+    row=2, col=1)
+    fig.add_trace(
+    go.Bar(name='Total Person Per Month',x=df['Month'],y=df['Toatl Person'], marker=dict(color="orange"), showlegend=True,text=df['Toatl Person'],textposition='auto'),
+    row=2, col=2)
     fig.update_geos(
     projection_type="orthographic",
     landcolor="white",
