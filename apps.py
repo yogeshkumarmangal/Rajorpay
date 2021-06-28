@@ -7,9 +7,6 @@ import pandas as pd
 import plotly.graph_objs as go
 import dropbox
 from plotly.subplots import make_subplots
-meta_tags=[
-                {"name": "viewport", "content": "width=device-width, initial-scale=1"}
-            ],
 # Step 1. Launch the application
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
 colors = {'background': '#000000'}
