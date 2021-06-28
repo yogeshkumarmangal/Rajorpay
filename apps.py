@@ -40,8 +40,8 @@ st['Date'] = pd.to_datetime(st.Date,format='%d-%m-%Y')
 # Step 3. Create a plotly figure
 fig = make_subplots(
     rows=2, cols=2,
-    column_widths=[0.6, 0.4],
-    row_heights=[0.4,0.6])
+    column_widths=[0.5, 0.5],
+    row_heights=[0.5,0.5])
 fig.add_trace(
     go.Bar(name='Payment Per Day',x=st.Date,y=st['Amount'], marker=dict(color="blue"), showlegend=True),
     row=1, col=1
@@ -134,8 +134,8 @@ def update_charts(start_date, end_date):
     filtered_data = st.loc[mask, :]
     fig = make_subplots(
     rows=2, cols=2,
-    column_widths=[0.6, 0.4],
-    row_heights=[0.4,0.6])
+    column_widths=[0.5, 0.5],
+    row_heights=[0.5,0.5])
     fig.add_trace(
     go.Bar(name='Payment Per Day',x=filtered_data['Date'],y=filtered_data['Amount'], marker=dict(color="blue"), showlegend=True,text=filtered_data['Amount'],textposition='auto'),
     row=1, col=1
