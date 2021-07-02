@@ -75,13 +75,13 @@ fig.update_layout(
             y=0)
     ]
 )
-fig.update_layout(height=500, width=700,title_text="Lyfas Rajorpay Dashboard")
+fig.update_layout(height=500, width=700,title_text="Lyfas Razorpay Dashboard")
 # Step 4. Create a Dash layout
 app.layout = html.Div([
                 # adding a header and a paragraph
                 html.Div([
                     html.H1("Acculi Labs Pvt. Ltd."),
-                    html.P(" Rajaor Pay Dashboard Data Analytics"),
+                    html.P(" Razorpay Pay Dashboard Data Analytics"),
                     html.Hr()
                          ], 
                     style = {'padding' : '50px' , 
